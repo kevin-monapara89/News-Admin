@@ -50,10 +50,9 @@ class MainActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     val downloadUri = task.result
                     var key = dbRef.root.push().key
-                    dbRef.root.child("Imageas").child(key!!).child("image").setValue(downloadUri)
+                    dbRef.root.child("Images").child(key!!).child("image").setValue(downloadUri)
                 } else {
-                    // Handle failures
-                    // ...
+
                 }
             }
         }
@@ -61,10 +60,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         if (resultCode == RESULT_OK) {
             if (requestCode == IMAGE_CODE) {
-                var uri = data?.data
+                var uri = data?.data!!
                 binding.imgposter.setImageURI(uri)
             }
         }
